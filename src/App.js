@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import SignIn from './pages/Signin/sign_in';
 import Home from './pages/Lecturer/Home/lecturer-home';
+import Disputes from './pages/Lecturer/Invoices/disputes';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/' element={<SignIn />} />
         {/* Lecturer routing */}
         <Route path='lectureh' element={<Home />} />
+        <Route path='disputes' element={<Disputes />} />
       </Routes>
     </BrowserRouter>
   );

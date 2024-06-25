@@ -1,6 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
@@ -13,7 +11,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 
@@ -47,6 +44,7 @@ function ResponsiveDrawer(props) {
     const drawer = (
         <div>
             <Toolbar />
+            <Box sx={{ marginLeft: '70px',   }}>
             <Stack direction="row" sx={{ mt: 2, mb: 2, }} >
                 <Avatar
                     alt="Remy Sharp"
@@ -54,6 +52,7 @@ function ResponsiveDrawer(props) {
                     sx={{ width: 100, height: 100 }}
                 />
             </Stack>
+            </Box>
             <Divider />
             <List>
                 {['INVOICES', 'DISPUTES', 'PROFILE'].map((text, index) => (
@@ -123,15 +122,6 @@ function ResponsiveDrawer(props) {
                 >
                     {drawer}
                 </Drawer>
-            </Box>
-            <Box
-                component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-            >
-                <Toolbar />
-                <Typography paragraph>
-                    Lecture Home
-                </Typography>
             </Box>
         </Box>
     );
