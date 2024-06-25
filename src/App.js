@@ -7,6 +7,9 @@ import {
 } from "react-router-dom";
 import SignIn from './pages/Signin/sign_in';
 import Home from './pages/Lecturer/Home/lecturer-home';
+import Admin_home from "./pages/Admin/admin_home"
+import Users from "./pages/Admin/users/Users"
+// import "/users.css"
 
 
 
@@ -19,6 +22,8 @@ function App() {
         <Route path='/' element={<SignIn />} />
         {/* Lecturer routing */}
         <Route path='lectureh' element={<Home />} />
+        <Route path='admin' element={<Admin_home />} />
+        <Route path='list' element={<Users />} />
       </Routes>
     </BrowserRouter>
   );

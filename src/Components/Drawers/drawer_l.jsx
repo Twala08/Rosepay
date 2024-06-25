@@ -16,13 +16,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+import "../../styles.css"
 
 //images
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Rose from '../../Images/Rosey.svg';
 
-const drawerWidth = 240;
+const drawerWidth = 320;
 
 function ResponsiveDrawer(props) {
     const { window } = props;
@@ -47,26 +48,26 @@ function ResponsiveDrawer(props) {
     const drawer = (
         <div>
             <Toolbar />
-            <Stack direction="row" sx={{ mt: 2, mb: 2, }} >
+            <Stack direction="row" sx={{ justifyContent: 'center', alignItems: 'center', mt: -2, mb: 4 }}>
                 <Avatar
                     alt="Remy Sharp"
                     src=""
-                    sx={{ width: 100, height: 100 }}
+                    sx={{ width: 150, height: 150 }}
                 />
             </Stack>
-            <Divider />
-            <List>
-                {['INVOICES', 'DISPUTES', 'PROFILE'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+            <Divider sx={{ display: 'none' }} />
+            <List className='lis' sx={{ borderTop: 'none' }}>
+                {['USERS', 'CREATE USER', 'INVOICES', 'DISPUTES'].map((text, index, array) => (
+                    <ListItem key={text} disablePadding sx={{ marginBottom: '20px' }}>
                         <ListItemButton
-                        sx={{
-                            // color: activePage === text ? 'red' : 'inherit',
-                            '&:hover': {
-                                backgroundColor: 'rgba(255, 0, 0, 0.1)', // light red
-                            },
-                        }}>
+                            sx={{
+                                '&:hover': {
+                                    backgroundColor: 'rgba(255, 0, 0, 0.1)', // light red
+                                },
+                                borderBottom:  '1px solid #ccc', // conditional border
+                            }}
+                        >
                             <ListItemIcon>
-                                {/* {index % 2 === 0 ? <ReceiptIcon /> : <AccountCircleIcon />} */}
                                 {index === 0 ? <ReceiptIcon /> : index === 1 ? <ConnectWithoutContactIcon /> : <AccountCircleIcon />}
                             </ListItemIcon>
                             <ListItemText primary={text} />
@@ -74,18 +75,17 @@ function ResponsiveDrawer(props) {
                     </ListItem>
                 ))}
             </List>
-            <Divider />
-            <Box sx={{ marginLeft: '20px', marginTop: '80px' }}>
+            <Divider sx={{ display: 'none' }} />
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mt: 1 }}>
                 <img
                     src={Rose}
                     alt="Logo"
-                    style={{ width: '200px', height: '200px' }}
+                    style={{ width: '280px', height: '180px' }}
                 />
             </Box>
         </div>
     );
 
-    // Remove this const when copying and pasting into your project.
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
@@ -96,7 +96,6 @@ function ResponsiveDrawer(props) {
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"
             >
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Drawer
                     container={container}
                     variant="temporary"
@@ -124,25 +123,12 @@ function ResponsiveDrawer(props) {
                     {drawer}
                 </Drawer>
             </Box>
-            <Box
-                component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-            >
-                <Toolbar />
-                <Typography paragraph>
-                    Lecture Home
-                </Typography>
-            </Box>
         </Box>
     );
 }
 
-// ResponsiveDrawer.propTypes = {
-//     /**
-//      * Injected by the documentation to work in an iframe.
-//      * Remove this when copying and pasting into your project.
-//      */
-//     window: PropTypes.func,
-// };
+ResponsiveDrawer.propTypes = {
+    window: PropTypes.func,
+};
 
 export default ResponsiveDrawer;

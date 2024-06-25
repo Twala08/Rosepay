@@ -4,7 +4,7 @@ import Drawer from '../../../Components/Drawers/drawer_l'
 function Lecturer() {
   return (
     
-    <React.Fragment>
+    <React.Fragment >
         <Drawer/>
     </React.Fragment>
     
