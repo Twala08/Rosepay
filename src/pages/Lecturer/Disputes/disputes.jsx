@@ -101,7 +101,7 @@ const MainContainer = styled(Box)(({ theme }) => ({
 }));
 
 const DrawerContainer = styled(Box)(({ theme }) => ({
-  width: 260, // Width of the drawer
+  width: 360, // Width of the drawer
 }));
 
 const ContentContainer = styled(Box)(({ theme, open }) => ({

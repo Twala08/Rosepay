@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems } from './navlistitems';
+import { mainListItems, secondaryListItems } from './navlistitems_a';
 import Box from '@mui/material/Box';
 //IMAGES
 import Rose from '../../Images/Rosey.svg';
