@@ -9,7 +9,7 @@ import SignIn from './pages/Signin/sign_in';
 import Home from './pages/Lecturer/Home/lecturer-home';
 import Admin_home from "./pages/Admin/admin_home"
 import Users from "./pages/Admin/users/Users"
-// import "/users.css"
+import Invoice from './pages/Admin/invoices/Invoice';
 
 
 
@@ -24,6 +24,7 @@ function App() {
         <Route path='lectureh' element={<Home />} />
         <Route path='admin' element={<Admin_home />} />
         <Route path='list' element={<Users />} />
+        <Route path='invoices' element={<Invoice />} />
       </Routes>
     </BrowserRouter>
   );
