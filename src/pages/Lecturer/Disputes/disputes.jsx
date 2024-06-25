@@ -4,20 +4,97 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Drawer from '../../../Components/Drawers/drawer_l';
+import TextField from '@mui/material/TextField';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import { Paper } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import NearMeDisabledIcon from '@mui/icons-material/NearMeDisabled';
 
-//Routing
-import { Link } from 'react-router-dom';
-
-const defaultTheme = createTheme();
+// const defaultTheme = createTheme();
+const Rosetheme = createTheme({
+  components: {
+      MuiInputBase: {
+          styleOverrides: {
+              root: {
+                  '&.Mui-focused': {
+                      borderColor: '#D81730',
+                  },
+              },
+          },
+      },
+      MuiInputLabel: {
+          styleOverrides: {
+              root: {
+                  '&.Mui-focused': {
+                      color: '#D81730',
+                  },
+              },
+          },
+      },
+      MuiFormLabel: {
+          styleOverrides: {
+              root: {
+                  '&.Mui-focused': {
+                      color: '#D81730',
+                  },
+              },
+          },
+      },
+      MuiOutlinedInput: {
+          styleOverrides: {
+              root: {
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#D81730',
+                  },
+              },
+          },
+      },
+      MuiRadio: {
+          styleOverrides: {
+              root: {
+                  color: '#D81730',
+                  '&.Mui-checked': {
+                      color: '#D81730',
+                  },
+              },
+          },
+      },
+      MuiCheckbox: {
+          styleOverrides: {
+              root: {
+                  color: '#D81730',
+                  '&.Mui-checked': {
+                      color: '#D81730',
+                  },
+              },
+          },
+      },
+      MuiButton: {
+          styleOverrides: {
+              root: {
+                  backgroundColor: '#D81730',
+                  '&:hover': {
+                      backgroundColor: '#A01523',
+                  },
+                  color: '#fff',
+              },
+          },
+      },
+      MuiLink: {
+          styleOverrides: {
+              root: {
+                  color: '#D81730',
+                  '&:hover': {
+                      color: '#A01523',
+                  },
+              },
+          },
+      },
+  },
+});
 
 const MainContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -55,7 +132,6 @@ export default function Dashboard() {
     setValue(newValue);
   };
 
-
   const navigate = useNavigate(); // Hook for navigation
 
   // useEffect(() => {
@@ -67,9 +143,8 @@ export default function Dashboard() {
   //   }
   // }, [navigate]);
 
-
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={Rosetheme}>
       <MainContainer>
         <CssBaseline />
         <DrawerContainer>
@@ -81,88 +156,62 @@ export default function Dashboard() {
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleChange} aria-label="lab API tabs example">
                 <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  LECTURE DASHBOARD
+                  DISPUTES
                 </Typography>
                 </TabList>
               </Box>
-
             </TabContext>
             <Box
               component="main"
               sx={{
                 flexGrow: 1,
                 p: 3,
-                mt: 1, // Margin at the top
+                mt: 3, // Margin at the top
                 ml: 15, // Margin-left 50px (50px / 8 = 6.25)
                 mr: 15, // Margin-right 50px (50px / 8 = 6.25)
-                // width: { sm: `calc(100% - ${drawerWidth}px - 100px)` }, // Adjust width to account for the left and right margins
               }}
             >
               <Paper
                 sx={{
                   p: 2,
-                  marginTop: "50px",
-                  width: "100%"
+                  marginTop: '50px',
+                  width: '100%',
                 }}
               >
-                
-                <Typography paragraph sx={{ fontWeight: 'bold' }}>
-                  Invoice: #001
-                </Typography>
                 <Toolbar />
-                <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  Month:
+                <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }}paragraph>
+                  Type your dispute here.
                 </Typography>
-                <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  Lessons worked:
-                </Typography>
-                <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  Calculated fee:
-                </Typography>
-                <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  Date issued:
-                </Typography>
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Dispute"
+                  multiline
+                  rows={6}
+                  fullWidth
+                />
               </Paper>
-              {/* <Link style={{ flex: 1, textAlign: "right" }}> */}
-              <Button
-                variant="contained"
+              <Box
                 sx={{
-                  backgroundColor: "#93AB4F",
-                  color: "#FFFFFF",
-                  width: "40%",
-                  marginLeft: "80px",
-                  marginTop: "20px",
-                  "&:hover": { backgroundColor: "#A01523" },
+                  display: 'flex',
+                  justifyContent: 'center',
+                  mt: 3,
                 }}
-                endIcon={<SendIcon />}
-              // onClick={handleSubmit}
               >
-
-                Approve
-
-              </Button>
-              {/* </Link> */}
-              <Link to='disputes'>
                 <Button
                   variant="contained"
                   sx={{
-                    backgroundColor: "#D81730",
-                    color: "#FFFFFF",
-                    width: "40%",
-                    marginLeft: "80px",
-                    marginTop: "20px",
-                    "&:hover": { backgroundColor: "#A01523" },
+                    backgroundColor: '#93AB4F',
+                    color: '#FFFFFF',
+                    width: '40%',
+                    '&:hover': { backgroundColor: '#A01523' },
                   }}
-                  endIcon={<NearMeDisabledIcon />}
+                  endIcon={<SendIcon />}
                 // onClick={handleSubmit}
                 >
-
-                  Dispute
-
+                  Submit
                 </Button>
-              </Link>
+              </Box>
             </Box>
-
           </TabsContainer>
         </ContentContainer>
       </MainContainer>

@@ -2,78 +2,39 @@ import * as React from 'react';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import AssessmentIcon from '@mui/icons-material/Assessment';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
 export const mainListItems = (
   <React.Fragment>
-    <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link to="/lectureh" style={{ textDecoration: 'none', color: 'inherit' }}>
       <ListItemButton>
         <ListItemIcon>
-          <DashboardIcon />
+          <ReceiptIcon />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" />
+        <ListItemText primary="INVOICES" />
       </ListItemButton>
     </Link>
-    <Link to="/courses" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link to="/disputes" style={{ textDecoration: 'none', color: 'inherit' }}>
       <ListItemButton>
         <ListItemIcon>
-          <MenuBookIcon />
+          <ConnectWithoutContactIcon />
         </ListItemIcon>
-        <ListItemText primary="My Courses" />
+        <ListItemText primary="DISPUTES" />
       </ListItemButton>
     </Link>
-    <Link to="/calendar" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
       <ListItemButton>
         <ListItemIcon>
-          <CalendarMonthIcon />
+          <AccountCircleIcon />
         </ListItemIcon>
-        <ListItemText primary="Calendar" />
+        <ListItemText primary="PROFILE" />
       </ListItemButton>
     </Link>
-    <Link to="/assessments" style={{ textDecoration: 'none', color: 'inherit' }}>
-      <ListItemButton>
-        <ListItemIcon>
-          <AssessmentIcon />
-        </ListItemIcon>
-        <ListItemText primary="Assessments" />
-      </ListItemButton>
-    </Link>
-    <Link to="/achievements" style={{ textDecoration: 'none', color: 'inherit' }}>
-      <ListItemButton>
-        <ListItemIcon>
-          <EmojiEventsIcon />
-        </ListItemIcon>
-        <ListItemText primary="Achievements" />
-      </ListItemButton>
-    </Link>
-    <Link to="/quizes" style={{ textDecoration: 'none', color: 'inherit' }}>
-      <ListItemButton>
-        <ListItemIcon>
-          <AssignmentIcon />
-        </ListItemIcon>
-        <ListItemText primary="Quizes" />
-      </ListItemButton>
-    </Link>
+
   </React.Fragment>
 );
 
-// export const secondaryListItems = (
-//   <React.Fragment>
-//     <Link to="/quizes" style={{ textDecoration: 'none', color: 'inherit' }}>
-//       <ListItemButton>
-//         <ListItemIcon>
-//           <AssignmentIcon />
-//         </ListItemIcon>
-//         <ListItemText primary="Quizes" />
-//       </ListItemButton>
-//     </Link>
-//   </React.Fragment>
-// );

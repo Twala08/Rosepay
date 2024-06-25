@@ -10,12 +10,6 @@ import { Paper } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import NearMeDisabledIcon from '@mui/icons-material/NearMeDisabled';
-
-//Routing
-import { Link } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
@@ -81,11 +75,10 @@ export default function Dashboard() {
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleChange} aria-label="lab API tabs example">
                 <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  LECTURE DASHBOARD
+                  LECTURE PROFILE
                 </Typography>
                 </TabList>
               </Box>
-
             </TabContext>
             <Box
               component="main"
@@ -105,64 +98,31 @@ export default function Dashboard() {
                   width: "100%"
                 }}
               >
-                
-                <Typography paragraph sx={{ fontWeight: 'bold' }}>
-                  Invoice: #001
-                </Typography>
+                <Toolbar />
+                {/* <Typography paragraph sx={{ textAlign: 'center', fontWeight: 'bold' }}>
+                  Invoice
+                </Typography> */}
                 <Toolbar />
                 <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  Month:
+                  NAME:
                 </Typography>
                 <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  Lessons worked:
+                  SURNAME:
                 </Typography>
                 <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  Calculated fee:
+                  EMPLOYEE ID:
                 </Typography>
                 <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  Date issued:
+                  EMAIL ADDRESS:
+                </Typography>
+                <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
+                  CELL PHONE:
+                </Typography>
+                <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
+                  MODULES:
                 </Typography>
               </Paper>
-              {/* <Link style={{ flex: 1, textAlign: "right" }}> */}
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#93AB4F",
-                  color: "#FFFFFF",
-                  width: "40%",
-                  marginLeft: "80px",
-                  marginTop: "20px",
-                  "&:hover": { backgroundColor: "#A01523" },
-                }}
-                endIcon={<SendIcon />}
-              // onClick={handleSubmit}
-              >
-
-                Approve
-
-              </Button>
-              {/* </Link> */}
-              <Link to='disputes'>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#D81730",
-                    color: "#FFFFFF",
-                    width: "40%",
-                    marginLeft: "80px",
-                    marginTop: "20px",
-                    "&:hover": { backgroundColor: "#A01523" },
-                  }}
-                  endIcon={<NearMeDisabledIcon />}
-                // onClick={handleSubmit}
-                >
-
-                  Dispute
-
-                </Button>
-              </Link>
             </Box>
-
           </TabsContainer>
         </ContentContainer>
       </MainContainer>
