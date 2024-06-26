@@ -14,6 +14,7 @@ import Rose from '../../Images/Rosey.svg';
 //images
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import profile4 from "../../Images/profile4.jpeg" 
 
 
 const drawerWidth = 320;
@@ -63,7 +64,7 @@ const DrawerComponent = ({ open, toggleDrawer }) => {
             <Stack direction="row" sx={{ mt: 2, mb: 2, }} >
                 <Avatar
                     alt="Remy Sharp"
-                    src=""
+                    src={profile4}
                     sx={{ width: 150, height: 150 }}
                 />
             </Stack>

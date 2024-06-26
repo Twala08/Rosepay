@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Drawer from '../../Components/Drawers/drawer_a';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
+import Drawer from "../../Components/Drawers/drawer_a";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Link } from 'react-router-dom';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Link } from "react-router-dom";
 
 const Rosetheme = createTheme({
   components: {
     MuiInputBase: {
       styleOverrides: {
         root: {
-          '&.Mui-focused': {
-            borderColor: '#D81730',
+          "&.Mui-focused": {
+            borderColor: "#D81730",
           },
         },
       },
@@ -30,8 +30,8 @@ const Rosetheme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          '&.Mui-focused': {
-            color: '#D81730',
+          "&.Mui-focused": {
+            color: "#D81730",
           },
         },
       },
@@ -39,8 +39,8 @@ const Rosetheme = createTheme({
     MuiFormLabel: {
       styleOverrides: {
         root: {
-          '&.Mui-focused': {
-            color: '#D81730',
+          "&.Mui-focused": {
+            color: "#D81730",
           },
         },
       },
@@ -48,8 +48,8 @@ const Rosetheme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#D81730',
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#D81730",
           },
         },
       },
@@ -57,9 +57,9 @@ const Rosetheme = createTheme({
     MuiRadio: {
       styleOverrides: {
         root: {
-          color: '#D81730',
-          '&.Mui-checked': {
-            color: '#D81730',
+          color: "#D81730",
+          "&.Mui-checked": {
+            color: "#D81730",
           },
         },
       },
@@ -67,9 +67,9 @@ const Rosetheme = createTheme({
     MuiCheckbox: {
       styleOverrides: {
         root: {
-          color: '#D81730',
-          '&.Mui-checked': {
-            color: '#D81730',
+          color: "#D81730",
+          "&.Mui-checked": {
+            color: "#D81730",
           },
         },
       },
@@ -77,20 +77,20 @@ const Rosetheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: '#D81730',
-          '&:hover': {
-            backgroundColor: '#A01523',
+          backgroundColor: "#D81730",
+          "&:hover": {
+            backgroundColor: "#A01523",
           },
-          color: '#fff',
+          color: "#fff",
         },
       },
     },
     MuiLink: {
       styleOverrides: {
         root: {
-          color: '#D81730',
-          '&:hover': {
-            color: '#A01523',
+          color: "#D81730",
+          "&:hover": {
+            color: "#A01523",
           },
         },
       },
@@ -99,7 +99,7 @@ const Rosetheme = createTheme({
 });
 
 const MainContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
+  display: "flex",
 }));
 
 const DrawerContainer = styled(Box)(({ theme }) => ({
@@ -107,30 +107,30 @@ const DrawerContainer = styled(Box)(({ theme }) => ({
 }));
 
 const ContentContainer = styled(Box)(({ theme, open }) => ({
-  display: 'flex',
+  display: "flex",
   flexGrow: 1,
   marginTop: theme.spacing(10.5),
-  transition: theme.transitions.create(['margin', 'width'], {
+  transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
   marginLeft: open ? 0 : -130,
-  width: open ? `calc(100% - 240px)` : '100%',
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexDirection: 'column',
+  width: open ? `calc(100% - 240px)` : "100%",
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
 }));
 
 const TabsContainer = styled(Box)(({ theme }) => ({
-  width: '95%',
-  textAlign: 'center',
+  width: "95%",
+  textAlign: "center",
 }));
 
 const FormContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
+  display: "flex",
+  flexDirection: "column",
   gap: theme.spacing(2),
-  alignItems: 'center',
+  alignItems: "center",
 }));
 
 export default function Dashboard() {
@@ -139,13 +139,13 @@ export default function Dashboard() {
     setOpen(!open);
   };
 
-  const [value, setValue] = React.useState('1');
+  const [value, setValue] = React.useState("1");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const navigate = useNavigate(); // Hook for navigation
-  const isSmallScreen = useMediaQuery('(max-width:1110px)');
+  const isSmallScreen = useMediaQuery("(max-width:1110px)");
 
   return (
     <ThemeProvider theme={Rosetheme}>
@@ -157,21 +157,31 @@ export default function Dashboard() {
         <ContentContainer open={open}>
           <TabsContainer>
             <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <TabList onChange={handleChange} aria-label="lab API tabs example">
-                  <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730' }} paragraph>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <TabList
+                  onChange={handleChange}
+                  aria-label="lab API tabs example"
+                >
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      color: "#D81730",
+                    }}
+                    paragraph
+                  >
                     CREATE USERS
                   </Typography>
                 </TabList>
               </Box>
             </TabContext>
 
-            <FormControl component="fieldset" sx={{ mt: '5%' }}>
+            <FormControl component="fieldset" sx={{ mt: "5%" }}>
               <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
-                sx={{ gap: isSmallScreen ? '10px' : '80px', mb: '4%' }}
+                sx={{ gap: isSmallScreen ? "10px" : "80px", mb: "4%" }}
               >
                 <FormControlLabel
                   value="finance"
@@ -196,34 +206,46 @@ export default function Dashboard() {
                 label="NAME"
                 sx={{
                   bgcolor: "grey.200",
-                  width: '57%', 
+                  width: "57%",
                 }}
               />
               <TextField
                 label="SURNAME"
                 sx={{
                   bgcolor: "grey.200",
-                  width: '57%'
+                  width: "57%",
+                }}
+              />
+              <TextField
+                label="EMAIL"
+                sx={{
+                  bgcolor: "grey.200",
+                  width: "57%",
                 }}
               />
               <TextField
                 label="EMPLOYEE ID"
                 sx={{
                   bgcolor: "grey.200",
-                  width: '57%'
+                  width: "57%",
                 }}
               />
               <TextField
                 label="PHONE"
                 sx={{
                   bgcolor: "grey.200",
-                  width: '57%'
+                  width: "57%",
                 }}
               />
               <Button
                 variant="contained"
                 className="customButton"
-                sx={{ backgroundColor: "#06D001", borderRadius: "25px", width:"15%", height:"45px" }}
+                sx={{
+                  backgroundColor: "#06D001",
+                  borderRadius: "25px",
+                  width: "15%",
+                  height: "45px",
+                }}
               >
                 ADD USER
               </Button>
