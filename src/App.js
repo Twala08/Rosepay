@@ -16,6 +16,9 @@ import Users from "./pages/Admin/users/Users"
 import Invoice from './pages/Admin/invoices/Invoice';
 import Disputes_a from './pages/Admin/disputes/Disputes_a';
 
+//FINANCE
+import Finance from './pages/Finance/finance_home';
+
 
 
 
@@ -35,6 +38,10 @@ function App() {
         <Route path='users' element={<Users />} />
         <Route path='invoices' element={<Invoice />} />
         <Route path='disputes_a' element={<Disputes_a />} />
+
+        {/* Finance */}
+        <Route path='finance' element={<Finance />} />
+        
         
       </Routes>
     </BrowserRouter>

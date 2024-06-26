@@ -3,7 +3,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ReceiptIcon from '@mui/icons-material/Receipt';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import GroupIcon from '@mui/icons-material/Group';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
@@ -13,7 +14,7 @@ export const mainListItems = (
     <Link to="/users" style={{ textDecoration: 'none', color: 'inherit' }}>
       <ListItemButton>
         <ListItemIcon>
-          <ReceiptIcon />
+          <GroupIcon />
         </ListItemIcon>
         <ListItemText primary="USERS" />
       </ListItemButton>
@@ -21,7 +22,7 @@ export const mainListItems = (
     <Link to="/list" style={{ textDecoration: 'none', color: 'inherit' }}>
       <ListItemButton>
         <ListItemIcon>
-          <ConnectWithoutContactIcon />
+          <GroupAddIcon />
         </ListItemIcon>
         <ListItemText primary="CREATE USERS" />
       </ListItemButton>
@@ -29,7 +30,7 @@ export const mainListItems = (
     <Link to="/invoices" style={{ textDecoration: 'none', color: 'inherit' }}>
       <ListItemButton>
         <ListItemIcon>
-          <AccountCircleIcon />
+          <ReceiptIcon />
         </ListItemIcon>
         <ListItemText primary="INVOICES" />
       </ListItemButton>
@@ -37,7 +38,7 @@ export const mainListItems = (
     <Link to="/disputes_a" style={{ textDecoration: 'none', color: 'inherit' }}>
       <ListItemButton>
         <ListItemIcon>
-          <AccountCircleIcon />
+          <ConnectWithoutContactIcon />
         </ListItemIcon>
         <ListItemText primary="DISPUTES" />
       </ListItemButton>

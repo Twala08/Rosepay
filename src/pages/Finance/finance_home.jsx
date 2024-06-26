@@ -3,19 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Drawer from '../../Components/Drawers/drawer_a';
+import Drawer from '../../Components/Drawers/drawer_f';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import { Paper } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import NearMeDisabledIcon from '@mui/icons-material/NearMeDisabled';
-
-//Routing
-import { Link } from 'react-router-dom';
+//Dropdown content 
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+//Table
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 const defaultTheme = createTheme();
 
@@ -55,6 +61,36 @@ export default function Dashboard() {
     setValue(newValue);
   };
 
+  //Table 
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: '#A01523',
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
+
+  function createData(name, date, time, duration, score) {
+    return { name, date, time, duration, score };
+  }
+
+  const rows_F = [
+    createData('Name ', 'JHB', '001', 'Approved', 'N/A'),
+    createData('Name ', 'PTA', '002', 'Pending', 'N/A'),
+  ];
+
 
   const navigate = useNavigate(); // Hook for navigation
 
@@ -87,8 +123,464 @@ export default function Dashboard() {
               </Box>
 
             </TabContext>
-            
-    
+            <Toolbar/>
+            <Accordion >
+                    <AccordionSummary sx={{ bgcolor: '#D81730', color: 'primary.contrastText' }}
+                      expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                      aria-controls="panel1-content"
+                      id="panel1-header"
+                    >
+                      INVOICES
+                    </AccordionSummary  >
+                    <AccordionDetails >
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          JANUARY
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion>
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel2-content"
+                          id="panel2-header"
+                        >
+                          FEBRUARY
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          MARCH
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          APRIL
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          MAY
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          JUNE
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          JULY
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          AUGUST
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          SEPTEMBER
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          OCTOBER
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          NOVEMBER
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+                      <Accordion >
+                        <AccordionSummary sx={{ bgcolor: '#292122', color: 'primary.contrastText' }}
+                          expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                          aria-controls="panel1-content"
+                          id="panel1-header"
+                        >
+                          DECEMBER
+                        </AccordionSummary  >
+                        <AccordionDetails >
+                          <TableContainer component={Paper}>
+                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                              <TableHead>
+                                <TableRow>
+                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell align="right">Date</StyledTableCell>
+                                  <StyledTableCell align="right">Time</StyledTableCell>
+                                  <StyledTableCell align="right">Duration</StyledTableCell>
+                                  <StyledTableCell align="right">Score</StyledTableCell>
+                                </TableRow>
+                              </TableHead>
+                              <TableBody>
+                                {rows_F.map((rows_F) => (
+                                  <StyledTableRow key={rows_F.name}>
+                                    <StyledTableCell component="th" scope="row">
+                                      {rows_F.name}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.date}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.time}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.duration}</StyledTableCell>
+                                    <StyledTableCell align="right">{rows_F.score}</StyledTableCell>
+                                  </StyledTableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </TableContainer>
+                        </AccordionDetails>
+                      </Accordion>
+
+
+                    </AccordionDetails>
+                  </Accordion>
           </TabsContainer>
         </ContentContainer>
       </MainContainer>
