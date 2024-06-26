@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -6,13 +6,11 @@ import Box from '@mui/material/Box';
 import Drawer from '../../../Components/Drawers/drawer_a';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
-import { Paper } from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import NearMeDisabledIcon from '@mui/icons-material/NearMeDisabled';
+import SettingsIcon from '@mui/icons-material/Settings';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { Avatar, IconButton, Paper } from '@mui/material';
 
 //Routing
 import { Link } from 'react-router-dom';
@@ -55,7 +53,6 @@ export default function Dashboard() {
     setValue(newValue);
   };
 
-
   const navigate = useNavigate(); // Hook for navigation
 
   // useEffect(() => {
@@ -66,7 +63,6 @@ export default function Dashboard() {
   //     navigate('/');
   //   }
   // }, [navigate]);
-
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -80,15 +76,13 @@ export default function Dashboard() {
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  CREATE USERS 
-                </Typography>
+                  <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730' }} paragraph>
+                    CREATE USERS 
+                  </Typography>
                 </TabList>
               </Box>
-
             </TabContext>
-            
-    
+
           </TabsContainer>
         </ContentContainer>
       </MainContainer>

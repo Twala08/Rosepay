@@ -31,8 +31,8 @@ function App() {
         <Route path='profile' element={<Profile />} />
 
         {/* ADMIN ROUTING */}
-        <Route path='users' element={<Admin_home />} />
-        <Route path='list' element={<Users />} />
+        <Route path='list' element={<Admin_home />} />
+        <Route path='users' element={<Users />} />
         <Route path='invoices' element={<Invoice />} />
         <Route path='disputes_a' element={<Disputes_a />} />
         
