@@ -142,7 +142,7 @@ export default function Dashboard() {
 
               </Button>
               {/* </Link> */}
-              <Link to='disputes'>
+              <Link to='/disputes'>
                 <Button
                   variant="contained"
                   sx={{

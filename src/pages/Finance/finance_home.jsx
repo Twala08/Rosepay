@@ -183,11 +183,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -220,11 +220,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                  <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -257,11 +257,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -294,11 +294,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -331,11 +331,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -368,11 +368,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -405,11 +405,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -442,11 +442,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -479,11 +479,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -516,11 +516,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
@@ -553,11 +553,11 @@ export default function Dashboard() {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                               <TableHead>
                                 <TableRow>
-                                  <StyledTableCell>Name (Assessment type)</StyledTableCell>
+                                <StyledTableCell>Lecture Name</StyledTableCell>
+                                  <StyledTableCell align="right">Campus</StyledTableCell>
+                                  <StyledTableCell align="right">Invoice Number</StyledTableCell>
+                                  <StyledTableCell align="right">Status</StyledTableCell>
                                   <StyledTableCell align="right">Date</StyledTableCell>
-                                  <StyledTableCell align="right">Time</StyledTableCell>
-                                  <StyledTableCell align="right">Duration</StyledTableCell>
-                                  <StyledTableCell align="right">Score</StyledTableCell>
                                 </TableRow>
                               </TableHead>
                               <TableBody>
