@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -58,6 +58,7 @@ const Indicator = styled(Box)(({ theme, active }) => ({
 
 const Dashboard = () => {
   const [open, setOpen] = useState(true);
+  const [invoices, setInvoices] = useState([]);
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -65,50 +66,26 @@ const Dashboard = () => {
 
   const [currentInvoiceIndex, setCurrentInvoiceIndex] = useState(0);
 
-  const invoiceDetails = [
-    {
-      invoiceNumber: '#001',
-      month: 'June 2024',
-      lessonsWorked: '20',
-      calculatedFee: 'R2000',
-      dateIssued: 'June 25, 2024',
-      issuedTo: '455662'
-    },
-    {
-      invoiceNumber: '#002',
-      month: 'July 2024',
-      lessonsWorked: '25',
-      calculatedFee: 'R2500',
-      dateIssued: 'July 15, 2024',
-      issuedTo: '1568'
-    },
-    {
-      invoiceNumber: '#003',
-      month: 'August 2024',
-      lessonsWorked: '18',
-      calculatedFee: 'R1800',
-      dateIssued: 'August 30, 2024',
-      issuedTo: '10102'
-    },
-    {
-      invoiceNumber: '#004',
-      month: 'July 2024',
-      lessonsWorked: '25',
-      calculatedFee: 'R2500',
-      dateIssued: 'July 15, 2024',
-      issuedTo: '8594'
-    },
-  ];
+  useEffect(() => {
+    fetch('https://cn6gihz1g2.execute-api.eu-west-1.amazonaws.com/production/invoices')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Fetched invoices:', data.invoices);
+        setInvoices(data.invoices);
+      })
+      .catch(error => console.error('Error fetching invoices:', error));
+  }, []);
+
 
   const handleNextInvoice = () => {
-    setCurrentInvoiceIndex((prevIndex) => (prevIndex === invoiceDetails.length - 1 ? 0 : prevIndex + 1));
+    setCurrentInvoiceIndex((prevIndex) => (prevIndex === invoices.length - 1 ? 0 : prevIndex + 1));
   };
 
   const handlePrevInvoice = () => {
-    setCurrentInvoiceIndex((prevIndex) => (prevIndex === 0 ? invoiceDetails.length - 1 : prevIndex - 1));
+    setCurrentInvoiceIndex((prevIndex) => (prevIndex === 0 ? invoices.length - 1 : prevIndex - 1));
   };
 
-  const currentInvoice = invoiceDetails[currentInvoiceIndex];
+  const currentInvoice = invoices[currentInvoiceIndex];
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -160,36 +137,43 @@ const Dashboard = () => {
                     position: 'relative',
                     width: '100%',
                     mx: 3,
-                    mt: "50px"
+                    mt: "50px",
+                    color: '#D81730'
                   }}
                 >
-                  <Typography
-                    paragraph
-                    sx={{
-                      fontWeight: 'bold',
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      margin: 2,
-                    }}
-                  >
-                    {currentInvoice.invoiceNumber}
-                  </Typography>
-                  <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730', fontSize:"15px" }} paragraph>
-                    Month: {currentInvoice.month}
-                  </Typography>
-                  <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730', fontSize:"15px" }} paragraph>
-                    Lessons worked: {currentInvoice.lessonsWorked}
-                  </Typography>
-                  <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730', fontSize:"15px" }} paragraph>
-                    Calculated fee: {currentInvoice.calculatedFee}
-                  </Typography>
-                  <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730', fontSize:"15px" }} paragraph>
-                    Date issued: {currentInvoice.dateIssued}
-                  </Typography>
-                  <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730', fontSize:"15px" }} paragraph>
-                    Issued to Employee: {currentInvoice.issuedTo}
-                  </Typography>
+                  {currentInvoice ? (
+                    <>
+                      <Typography
+                        paragraph
+                        sx={{
+                          fontWeight: 'bold',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          margin: 2,
+                        }}
+                      >
+                        {currentInvoice.invoice_id}
+                      </Typography>
+                      <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730', fontSize:"15px" }} paragraph>
+                        Month: {currentInvoice.generated_date}
+                      </Typography>
+                      <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730', fontSize:"15px" }} paragraph>
+                        Lessons worked: {currentInvoice.sessions_worked}
+                      </Typography>
+                      <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730', fontSize:"15px" }} paragraph>
+                        Calculated fee: {currentInvoice.Amount}
+                      </Typography>
+                      {/* <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730', fontSize:"15px" }} paragraph>
+                        Date issued: {currentInvoice.sessions_worked}
+                      </Typography> */}
+                      <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730', fontSize:"15px" }} paragraph>
+                        Issued to Employee: {currentInvoice.employee_id}
+                      </Typography>
+                    </>
+                  ) : (
+                    <Typography>Loading...</Typography>
+                  )}
                 </Paper>
                 <ChevronRightIcon style={{ fontSize: "50px", cursor: 'pointer' }} onClick={handleNextInvoice} />
               </Box>

@@ -19,174 +19,95 @@ import P1 from '../../Images/picture2.png';
 import P2 from '../../Images/charles-deloye-2RouMSg9Rnw-unsplash.jpg';
 import P3 from '../../Images/honey-yanibel-minaya-cruz-laORtJZaieU-unsplash.jpg';
 import Paper from '@mui/material/Paper'; // Import the Paper component
-
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import Swal from 'sweetalert2'; // Import SweetAlert
 
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                RoseBank
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+function SignIn() {
+    const [role, setRole] = React.useState('');
+    const navigate = useNavigate(); // Initialize useNavigate
 
-// Customizing the theme
-const Rosetheme = createTheme({
-    components: {
-        MuiInputBase: {
-            styleOverrides: {
-                root: {
-                    '&.Mui-focused': {
-                        borderColor: '#D81730',
-                    },
-                },
-            },
-        },
-        MuiInputLabel: {
-            styleOverrides: {
-                root: {
-                    '&.Mui-focused': {
-                        color: '#D81730',
-                    },
-                },
-            },
-        },
-        MuiFormLabel: {
-            styleOverrides: {
-                root: {
-                    '&.Mui-focused': {
-                        color: '#D81730',
-                    },
-                },
-            },
-        },
-        MuiOutlinedInput: {
-            styleOverrides: {
-                root: {
-                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#D81730',
-                    },
-                },
-            },
-        },
-        MuiRadio: {
-            styleOverrides: {
-                root: {
-                    color: '#D81730',
-                    '&.Mui-checked': {
-                        color: '#D81730',
-                    },
-                },
-            },
-        },
-        MuiCheckbox: {
-            styleOverrides: {
-                root: {
-                    color: '#D81730',
-                    '&.Mui-checked': {
-                        color: '#D81730',
-                    },
-                },
-            },
-        },
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: '#D81730',
-                    '&:hover': {
-                        backgroundColor: '#A01523',
-                    },
-                    color: '#fff',
-                },
-            },
-        },
-        MuiLink: {
-            styleOverrides: {
-                root: {
-                    color: '#D81730',
-                    '&:hover': {
-                        color: '#A01523',
-                    },
-                },
-            },
-        },
-    },
-});
+    const handleRoleChange = (event) => {
+        setRole(event.target.value);
+    };
 
-export default function SignIn() {
-    const [user, setUser] = React.useState('');
-    const [employee, setEmployee] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const navigate = useNavigate();
-
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        fetch('https://fdvpj7kib0.execute-api.eu-west-1.amazonaws.com/production/user', {
-            employee: employee,
-            password: password,
-            userType: user,
-        })
-        .then(response => {
-            if (response.data.allowed) {
-                console.log(response.data.token);
-                localStorage.setItem('logintoken', response.data.token);
+        const data = new FormData(event.currentTarget);
+        const payload = {
+            user_id: parseInt(data.get('Employee_ID')), // Convert to integer
+            password: data.get('password'),
+            role: role,
+        };
+
+        try {
+            const response = await fetch('https://fdvpj7kib0.execute-api.eu-west-1.amazonaws.com/production/auth', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+            const result = await response.json();
+
+            if (response.ok) {
+                // Successful login
                 Swal.fire({
                     icon: 'success',
-                    title: 'Login Successful!',
-                    text: 'You are now redirected to the appropriate page.',
-                    timer: 1500,
-                    timerProgressBar: true,
+                    title: 'Login successful!',
                     showConfirmButton: false,
-                    willClose: () => {
-                        // Navigate based on the user type
-                        switch (user) {
-                            case 'LECTURE':
-                                navigate('/lectureh');
-                                break;
-                            case 'FINANCE':
-                                navigate('/finance');
-                                break;
-                            case 'ADMIN':
+                    timer: 1500
+                });
+
+                // Handle redirection based on role if UserDetails is defined
+                if (result.UserDetails && result.UserDetails.role) {
+                    const userRole = result.UserDetails.role.toLowerCase();
+                    const selectedRole = role.toLowerCase();
+
+                    if (userRole === selectedRole) {
+                        switch (userRole) {
+                            case 'admin':
                                 navigate('/users');
                                 break;
+                            case 'lecturer':
+                                navigate('/lectureh');
+                                break;
+                            case 'finance':
+                                navigate('/finance');
+                                break;
                             default:
-                                Swal.fire({
-                                    icon: 'info',
-                                    title: 'Unknown User Type',
-                                    text: 'Please select a valid user type.',
-                                });
+                                console.warn('Unknown role:', userRole);
                                 break;
                         }
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Unauthorized',
+                            text: 'You are not authorized with the selected role.',
+                        });
                     }
+                }
+            } else {
+                // Error handling
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login failed',
+                    text: 'Invalid credentials',
                 });
-            } 
-        })
-        .catch(error => {
-            console.log(user);
+            }
+        } catch (error) {
+            console.error('Error:', error);
             Swal.fire({
                 icon: 'error',
-                title: 'Incorrect Password/email',
-                text: 'Please provide correct credentials.',
+                title: 'Login failed',
+                text: 'Something went wrong. Please try again later.',
             });
-        });
-    };
-    
-    const handleUserChange = (event) => {
-        setUser(event.target.value);
+        }
     };
 
-    const handleEmployeeChange = (event) => {
-        setEmployee(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
+    const Rosetheme = createTheme({
+        // Your theme customization
+    });
 
     return (
         <ThemeProvider theme={Rosetheme}>
@@ -288,7 +209,6 @@ export default function SignIn() {
                         </Box>
                     </Paper>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
         </ThemeProvider>
     );
