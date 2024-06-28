@@ -152,7 +152,7 @@ const admin_home = () => {
               className="customButton"
               sx={{ backgroundColor: "#06D001", borderRadius: "25px" }}
             >
-              ADD USER
+              ADD USEr
             </Button>
           </div>
         </div>
