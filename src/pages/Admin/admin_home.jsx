@@ -14,6 +14,7 @@ import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 const Rosetheme = createTheme({
@@ -139,13 +140,168 @@ export default function Dashboard() {
     setOpen(!open);
   };
 
-  const [value, setValue] = React.useState("1");
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const [value, setValue] = useState("");
+  const handleChange = (event) => {
+    setValue(event.target.value);
   };
 
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width:1110px)");
+
+  const [formData, setFormData] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    employeeId: "",
+    password: "",
+  });
+
+  const postData = async () => {
+    if (formData.name === "") {
+      Swal.fire({
+        title: "Error",
+        text: "Please enter your name!",
+        icon: "error",
+        customClass: {
+          confirmButton: "swal-confirm-button",
+        },
+        buttonsStyling: true,
+        confirmButtonColor: "#D81730",
+      });
+      return;
+    }
+
+    if (formData.surname === "") {
+      Swal.fire({
+        title: "Error",
+        text: "Please enter your surname!",
+        icon: "error",
+        customClass: {
+          confirmButton: "swal-confirm-button",
+        },
+        buttonsStyling: true,
+        confirmButtonColor: "#4CAF50",
+      });
+      return;
+    }
+
+    if (formData.email === "") {
+      Swal.fire({
+        title: "Error",
+        text: "Please enter your email!",
+        icon: "error",
+        customClass: {
+          confirmButton: "swal-confirm-button",
+        },
+        buttonsStyling: true,
+        confirmButtonColor: "#4CAF50",
+      });
+      return;
+    }
+
+    if (formData.employeeId === "") {
+      Swal.fire({
+        title: "Error",
+        text: "Please enter your employee ID!",
+        icon: "error",
+        customClass: {
+          confirmButton: "swal-confirm-button",
+        },
+        buttonsStyling: true,
+        confirmButtonColor: "#4CAF50",
+      });
+      return;
+    }
+
+    if (formData.password === "") {
+      Swal.fire({
+        title: "Error",
+        text: "Please enter your password!",
+        icon: "error",
+        customClass: {
+          confirmButton: "swal-confirm-button",
+        },
+        buttonsStyling: true,
+        confirmButtonColor: "#4CAF50",
+      });
+      return;
+    }
+
+    if (value === "") {
+      Swal.fire({
+        title: "Error",
+        text: "Please select a role!",
+        icon: "error",
+        customClass: {
+          confirmButton: "swal-confirm-button",
+        },
+        buttonsStyling: true,
+        confirmButtonColor: "#4CAF50",
+      });
+      return;
+    }
+
+    const url = 'https://fdvpj7kib0.execute-api.eu-west-1.amazonaws.com/production/user';
+    
+    const data = {
+      user_id: formData.employeeId,  
+      email: formData.email,
+      name: formData.name,
+      surname: formData.surname,
+      password: formData.password, 
+      role: value, 
+    };
+    
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const responseData = await response.json();
+      console.log('Data posted successfully:', responseData);
+      Swal.fire({
+        title: "Success",
+        text: "Form submitted successfully!",
+        icon: "success",
+        customClass: {
+          confirmButton: "swal-confirm-button",
+        },
+        buttonsStyling: true,
+        confirmButtonColor: "#4CAF50",
+      });
+  
+      // Reset the form data and radio button value
+      setFormData({
+        name: "",
+        surname: "",
+        email: "",
+        employeeId: "",
+        password: "",
+      });
+      setValue("");
+  
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
+  };
+  
+
+  const handleInputChange = (event) => {
+    const { id, value } = event.target;
+    if (id === "employeeId") {
+      setFormData({ ...formData, [id]: value === "" ? "" : parseInt(value, 10) });
+    } else {
+      setFormData({ ...formData, [id]: value });
+    }
+  };
 
   return (
     <ThemeProvider theme={Rosetheme}>
@@ -158,10 +314,7 @@ export default function Dashboard() {
           <TabsContainer>
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
-                >
+                <TabList onChange={handleChange} aria-label="lab API tabs example">
                   <Typography
                     sx={{
                       textAlign: "center",
@@ -181,6 +334,8 @@ export default function Dashboard() {
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
+                value={value}
+                onChange={handleChange}
                 sx={{ gap: isSmallScreen ? "10px" : "80px", mb: "4%" }}
               >
                 <FormControlLabel
@@ -203,39 +358,54 @@ export default function Dashboard() {
 
             <FormContainer>
               <TextField
+                id="name"
                 label="NAME"
                 sx={{
                   bgcolor: "grey.200",
                   width: "57%",
                 }}
+                value={formData.name}
+                onChange={handleInputChange}
               />
               <TextField
+                id="surname"
                 label="SURNAME"
                 sx={{
                   bgcolor: "grey.200",
                   width: "57%",
                 }}
+                value={formData.surname}
+                onChange={handleInputChange}
               />
               <TextField
+                id="email"
                 label="EMAIL"
                 sx={{
                   bgcolor: "grey.200",
                   width: "57%",
                 }}
+                value={formData.email}
+                onChange={handleInputChange}
               />
               <TextField
+                id="employeeId"
                 label="EMPLOYEE ID"
                 sx={{
                   bgcolor: "grey.200",
                   width: "57%",
                 }}
+                value={formData.employeeId}
+                onChange={handleInputChange}
               />
               <TextField
-                label="PHONE"
+                id="password"
+                label="PASSWORD"
                 sx={{
                   bgcolor: "grey.200",
                   width: "57%",
                 }}
+                value={formData.password}
+                onChange={handleInputChange}
               />
               <Button
                 variant="contained"
@@ -246,6 +416,7 @@ export default function Dashboard() {
                   width: "15%",
                   height: "45px",
                 }}
+                onClick={postData}
               >
                 ADD USER
               </Button>
