@@ -99,9 +99,88 @@ function SignIn() {
         }
     };
 
-    const Rosetheme = createTheme({
-        // Your theme customization
-    });
+// Customizing the theme
+const Rosetheme = createTheme({
+    components: {
+        MuiInputBase: {
+            styleOverrides: {
+                root: {
+                    '&.Mui-focused': {
+                        borderColor: '#D81730',
+                    },
+                },
+            },
+        },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    '&.Mui-focused': {
+                        color: '#D81730',
+                    },
+                },
+            },
+        },
+        MuiFormLabel: {
+            styleOverrides: {
+                root: {
+                    '&.Mui-focused': {
+                        color: '#D81730',
+                    },
+                },
+            },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#D81730',
+                    },
+                },
+            },
+        },
+        MuiRadio: {
+            styleOverrides: {
+                root: {
+                    color: '#D81730',
+                    '&.Mui-checked': {
+                        color: '#D81730',
+                    },
+                },
+            },
+        },
+        MuiCheckbox: {
+            styleOverrides: {
+                root: {
+                    color: '#D81730',
+                    '&.Mui-checked': {
+                        color: '#D81730',
+                    },
+                },
+            },
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#D81730',
+                    '&:hover': {
+                        backgroundColor: '#A01523',
+                    },
+                    color: '#fff',
+                },
+            },
+        },
+        MuiLink: {
+            styleOverrides: {
+                root: {
+                    color: '#D81730',
+                    '&:hover': {
+                        color: '#A01523',
+                    },
+                },
+            },
+        },
+    },
+});
 
     return (
         <ThemeProvider theme={Rosetheme}>
