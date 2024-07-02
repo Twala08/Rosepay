@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +14,7 @@ import { Avatar, IconButton } from '@mui/material';
 import profile from "../../../Images/profile.jpg";
 import profile1 from "../../../Images/profile2.jpeg";
 import profile3 from "../../../Images/profile3.jpeg";
+import UserMenuButton from '../../../Components/UserMenuButton';
 
 const defaultTheme = createTheme();
 
@@ -28,7 +29,7 @@ const DrawerContainer = styled(Box)(({ theme }) => ({
 const ContentContainer = styled(Box)(({ theme, open }) => ({
   display: 'flex',
   flexGrow: 1,
-  marginTop: theme.spacing(10.5), 
+  marginTop: 30, 
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -55,6 +56,19 @@ export default function Dashboard() {
 
   const navigate = useNavigate();
 
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+  useEffect(() => {
+    if (!userDetails || (userDetails.role !== 'admin' && userDetails.role !== 'Admin')) {
+      navigate("/");
+    }
+  }, [userDetails, navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("userDetails");
+    navigate("/");
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <MainContainer>
@@ -64,13 +78,34 @@ export default function Dashboard() {
         </DrawerContainer>
         <ContentContainer open={open}>
           <TabsContainer>
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <TabList onChange={handleChange} aria-label="lab API tabs example">
-                  <Typography sx={{ textAlign: 'center', fontWeight: 'bold', color: '#D81730' }} paragraph>
+          <TabContext value="1">
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  borderBottom: "0.5px solid rgba(0, 0, 0, 0.12)",
+                  paddingRight: "1rem",
+                  marginTop: 0,
+                }}
+              >
+                <TabList aria-label="lab API tabs example">
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      color: "#D81730",
+                    }}
+                    paragraph
+                  >
                     LIST OF USERS
                   </Typography>
                 </TabList>
+                {/* Added IconButton with Menu for user options */}
+                <UserMenuButton
+                  userDetails={userDetails}
+                  handleLogout={handleLogout}
+                />
               </Box>
             </TabContext>
             {[profile, profile3, profile1].map((profileSrc, index) => (

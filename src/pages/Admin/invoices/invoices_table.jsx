@@ -20,8 +20,8 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import UserMenuButton from "../../../Components/UserMenuButton";
 import CustomButton from "../../../Components/CustomButton";
-// import SendIcon from "@mui/icons-material/Send";
-import SendIcon from '@mui/icons-material/TableView';
+
+import ViewDayIcon from '@mui/icons-material/ViewDay';
 
 const defaultTheme = createTheme();
 
@@ -201,8 +201,8 @@ const Dashboard = () => {
               >
                 <CustomButton
                   onClick={handleClick}
-                  text="Table View"
-                  icon={SendIcon}
+                  text="Singular View"
+                  icon={ViewDayIcon}
                   sx={{ width: "60% !important",}}
                 />
                 <Box
@@ -213,96 +213,9 @@ const Dashboard = () => {
                     width: "100%",
                   }}
                 >
-                  <ChevronLeftIcon
-                    style={{ fontSize: "50px", cursor: "pointer" }}
-                    onClick={handlePrevInvoice}
-                  />
-                  <Paper
-                    sx={{
-                      p: 2,
-                      backgroundColor: "#f0f0f0",
-                      borderRadius: "25px",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      minHeight: "280px",
-                      position: "relative",
-                      width: "100%",
-                      mx: 3,
-                      mt: "50px",
-                      color: "#D81730",
-                    }}
-                  >
-                    {currentInvoice ? (
-                      <>
-                        <Typography
-                          paragraph
-                          sx={{
-                            fontWeight: "bold",
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            margin: 2,
-                          }}
-                        >
-                          {currentInvoice.invoice_id}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            textAlign: "center",
-                            fontWeight: "bold",
-                            color: "#D81730",
-                            fontSize: "15px",
-                          }}
-                          paragraph
-                        >
-                          Month: {currentInvoice.generated_date}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            textAlign: "center",
-                            fontWeight: "bold",
-                            color: "#D81730",
-                            fontSize: "15px",
-                          }}
-                          paragraph
-                        >
-                          Lessons worked: {currentInvoice.sessions_worked}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            textAlign: "center",
-                            fontWeight: "bold",
-                            color: "#D81730",
-                            fontSize: "15px",
-                          }}
-                          paragraph
-                        >
-                          Calculated fee: {currentInvoice.Amount}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            textAlign: "center",
-                            fontWeight: "bold",
-                            color: "#D81730",
-                            fontSize: "15px",
-                          }}
-                          paragraph
-                        >
-                          Issued to Employee: {currentInvoice.employee_id}
-                        </Typography>
-                      </>
-                    ) : (
-                      <Typography>Loading...</Typography>
-                    )}
-                  </Paper>
-                  <ChevronRightIcon
-                    style={{ fontSize: "50px", cursor: "pointer" }}
-                    onClick={handleNextInvoice}
-                  />
+            
                 </Box>
-                <IndicatorContainer sx={{ mt: "7%" }}>
+                {/* <IndicatorContainer sx={{ mt: "7%" }}>
                   {[0, 1, 2, 3].map((index) => (
                     <Indicator
                       key={index}
@@ -316,7 +229,7 @@ const Dashboard = () => {
                       }
                     />
                   ))}
-                </IndicatorContainer>
+                </IndicatorContainer> */}
               </Box>
             </Box>
           </TabsContainer>

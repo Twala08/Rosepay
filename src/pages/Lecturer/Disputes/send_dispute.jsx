@@ -1,6 +1,8 @@
-//Disputes component
+//Send Dispute
+
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -11,11 +13,11 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Tab from '@mui/material/Tab';
 import { Divider, Paper } from '@mui/material';
+import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import UserMenuButton from '../../../Components/UserMenuButton';
-import { useNavigate } from "react-router-dom";
 
 const Rosetheme = createTheme({
   components: {
@@ -137,18 +139,19 @@ const TabsContainer = styled(Box)(({ theme }) => ({
   width: '95%',
 }));
 
-export default function Dashboard({ onDisputeClick }) {
+export default function Dashboard() {
   const [open, setOpen] = useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  const [tabValue, setTabValue] = useState('2'); // Start on the second tab
+  const [tabValue, setTabValue] = useState('1');
   const [disputeReason, setDisputeReason] = useState('');
-  const navigate = useNavigate();
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
+
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     fetch('https://52xcrgi3s3.execute-api.eu-west-1.amazonaws.com/production/dispute', {
@@ -171,11 +174,6 @@ export default function Dashboard({ onDisputeClick }) {
     });
   };
 
- 
-
-  const handleDisputeButtonClick = () => {
-    setTabValue('1'); // Navigate to the first tab when the button is clicked
-  };
 
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
@@ -189,7 +187,6 @@ export default function Dashboard({ onDisputeClick }) {
     localStorage.removeItem("userDetails");
     navigate("/");
   };
-
   return (
     <ThemeProvider theme={Rosetheme}>
       <MainContainer>
@@ -234,7 +231,7 @@ export default function Dashboard({ onDisputeClick }) {
               </Typography> */}
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <TabList onChange={handleTabChange} aria-label="lab API tabs example">
-                  <Tab label="Send Dispute" value="1" disabled /> {/* Disable the first tab */}
+                  <Tab label="Send Dispute" value="1" />
                   <Tab label="View Dispute" value="2" />
                 </TabList>
               </Box>

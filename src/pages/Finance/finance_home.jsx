@@ -22,6 +22,7 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import UserMenuButton from '../../Components/UserMenuButton';
 
 const defaultTheme = createTheme();
 
@@ -36,7 +37,7 @@ const DrawerContainer = styled(Box)(({ theme }) => ({
 const ContentContainer = styled(Box)(({ theme, open }) => ({
   display: 'flex',
   flexGrow: 1,
-  marginTop: theme.spacing(10.5), // Add margin top of 30px
+  marginTop: 30, // Add margin top of 30px
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -103,6 +104,19 @@ export default function Dashboard() {
   //   }
   // }, [navigate]);
 
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+  useEffect(() => {
+    if (!userDetails || (userDetails.role !== 'finance' && userDetails.role !== 'Finance')) {
+      navigate("/");
+    }
+  }, [userDetails, navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("userDetails");
+    navigate("/");
+  };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -113,15 +127,35 @@ export default function Dashboard() {
         </DrawerContainer>
         <ContentContainer open={open}>
           <TabsContainer>
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  FINANCE DASHBOARD
-                </Typography>
+          <TabContext value="1">
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  borderBottom: "0.5px solid rgba(0, 0, 0, 0.12)",
+                  paddingRight: "1rem",
+                  marginTop: 0,
+                }}
+              >
+                <TabList aria-label="lab API tabs example">
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      color: "#D81730",
+                    }}
+                    paragraph
+                  >
+                    FINANCE
+                  </Typography>
                 </TabList>
+                {/* Added IconButton with Menu for user options */}
+                <UserMenuButton
+                  userDetails={userDetails}
+                  handleLogout={handleLogout}
+                />
               </Box>
-
             </TabContext>
             <Toolbar/>
             <Accordion >

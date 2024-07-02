@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -16,6 +16,7 @@ import TextField from "@mui/material/TextField";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import UserMenuButton from "../../Components/UserMenuButton";
 
 const Rosetheme = createTheme({
   components: {
@@ -110,7 +111,7 @@ const DrawerContainer = styled(Box)(({ theme }) => ({
 const ContentContainer = styled(Box)(({ theme, open }) => ({
   display: "flex",
   flexGrow: 1,
-  marginTop: theme.spacing(10.5),
+  marginTop: 30,
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -269,7 +270,7 @@ export default function Dashboard() {
       console.log('Data posted successfully:', responseData);
       Swal.fire({
         title: "Success",
-        text: "Form submitted successfully!",
+        text: "User successfully registered!",
         icon: "success",
         customClass: {
           confirmButton: "swal-confirm-button",
@@ -303,6 +304,19 @@ export default function Dashboard() {
     }
   };
 
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+  useEffect(() => {
+    if (!userDetails || (userDetails.role !== 'admin' && userDetails.role !== 'Admin')) {
+      navigate("/");
+    }
+  }, [userDetails, navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("userDetails");
+    navigate("/");
+  };
+
   return (
     <ThemeProvider theme={Rosetheme}>
       <MainContainer>
@@ -312,9 +326,18 @@ export default function Dashboard() {
         </DrawerContainer>
         <ContentContainer open={open}>
           <TabsContainer>
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <TabContext value="1">
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  borderBottom: "0.5px solid rgba(0, 0, 0, 0.12)",
+                  paddingRight: "1rem",
+                  marginTop: 0,
+                }}
+              >
+                <TabList aria-label="lab API tabs example">
                   <Typography
                     sx={{
                       textAlign: "center",
@@ -326,6 +349,11 @@ export default function Dashboard() {
                     CREATE USERS
                   </Typography>
                 </TabList>
+                {/* Added IconButton with Menu for user options */}
+                <UserMenuButton
+                  userDetails={userDetails}
+                  handleLogout={handleLogout}
+                />
               </Box>
             </TabContext>
 

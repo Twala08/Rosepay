@@ -19,6 +19,7 @@ import SendIcon from "@mui/icons-material/Send";
 import NearMeDisabledIcon from "@mui/icons-material/NearMeDisabled";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import UserMenuButton from "../../../Components/UserMenuButton";
 
 //Routing
 import { Link } from "react-router-dom";
@@ -208,6 +209,20 @@ export default function Dashboard() {
   const currentInvoice = disputeMessages[currentInvoiceIndex];
   const isSmallScreen = useMediaQuery('(max-width:1110px)');
 
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+  useEffect(() => {
+    if (!userDetails || (userDetails.role !== 'admin' && userDetails.role !== 'Admin')) {
+      navigate("/");
+    }
+  }, [userDetails, navigate]);
+
+    const handleLogout = () => {
+    localStorage.removeItem("userDetails");
+    navigate("/");
+  };
+
+
   return (
     <ThemeProvider theme={Rosetheme}>
       <MainContainer>
@@ -218,12 +233,18 @@ export default function Dashboard() {
         </DrawerContainer>
         <ContentContainer open={open}>
           <TabsContainer>
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <TabList
-                  onChange={handleChange}
-                  aria-label="lab API tabs example"
-                >
+          <TabContext value="1">
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  borderBottom: "0.5px solid rgba(0, 0, 0, 0.12)",
+                  paddingRight: "1rem",
+                  marginTop: 0,
+                }}
+              >
+                <TabList aria-label="lab API tabs example">
                   <Typography
                     sx={{
                       textAlign: "center",
@@ -232,9 +253,14 @@ export default function Dashboard() {
                     }}
                     paragraph
                   >
-                    DISPUTES
+                    LIST DISPUTES
                   </Typography>
                 </TabList>
+                {/* Added IconButton with Menu for user options */}
+                <UserMenuButton
+                  userDetails={userDetails}
+                  handleLogout={handleLogout}
+                />
               </Box>
             </TabContext>
 

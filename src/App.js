@@ -14,7 +14,9 @@ import Profile from './pages/Lecturer/Profile/profile';
 import Admin_home from "./pages/Admin/admin_home"
 import Users from "./pages/Admin/users/Users"
 import Invoice from './pages/Admin/invoices/Invoice';
+import Invoice_t from './pages/Admin/invoices/invoices_table';
 import Disputes_a from './pages/Admin/disputes/Disputes_a';
+import S_Disputes from './pages/Lecturer/Disputes/send_dispute'
 
 //FINANCE
 import Finance from './pages/Finance/finance_home';
@@ -32,11 +34,13 @@ function App() {
         <Route path='lectureh' element={<Home />} />
         <Route path='disputes' element={<Disputes />} />
         <Route path='profile' element={<Profile />} />
+        <Route path='s_disputes' element={<S_Disputes />} />
 
         {/* ADMIN ROUTING */}
         <Route path='list' element={<Admin_home />} />
         <Route path='users' element={<Users />} />
         <Route path='invoices' element={<Invoice />} />
+        <Route path='invoices_t' element={<Invoice_t />} />
         <Route path='disputes_a' element={<Disputes_a />} />
 
         {/* Finance */}

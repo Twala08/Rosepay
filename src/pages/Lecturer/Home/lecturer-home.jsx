@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import NearMeDisabledIcon from '@mui/icons-material/NearMeDisabled';
+import UserMenuButton from '../../../Components/UserMenuButton';
 
 //Routing
 import { Link } from 'react-router-dom';
@@ -30,7 +31,7 @@ const DrawerContainer = styled(Box)(({ theme }) => ({
 const ContentContainer = styled(Box)(({ theme, open }) => ({
   display: 'flex',
   flexGrow: 1,
-  marginTop: theme.spacing(10.5), // Add margin top of 30px
+  marginTop: 30, // Add margin top of 30px
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -66,6 +67,18 @@ export default function Dashboard() {
   //     navigate('/');
   //   }
   // }, [navigate]);
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+  useEffect(() => {
+    if (!userDetails || (userDetails.role !== 'lecturer' && userDetails.role !== 'Lecturer')) {
+      navigate("/");
+    }
+  }, [userDetails, navigate]);
+
+    const handleLogout = () => {
+    localStorage.removeItem("userDetails");
+    navigate("/");
+  };
 
 
   return (
@@ -77,15 +90,35 @@ export default function Dashboard() {
         </DrawerContainer>
         <ContentContainer open={open}>
           <TabsContainer>
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <TabList onChange={handleChange} aria-label="lab API tabs example">
-                <Typography sx={{ textAlign: 'center',fontWeight: 'bold',color: '#D81730' }} paragraph>
-                  LECTURE DASHBOARD
-                </Typography>
+          <TabContext value="1">
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  borderBottom: "0.5px solid rgba(0, 0, 0, 0.12)",
+                  paddingRight: "1rem",
+                  marginTop: 0,
+                }}
+              >
+                <TabList aria-label="lab API tabs example">
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      color: "#D81730",
+                    }}
+                    paragraph
+                  >
+                    LIST DISPUTES
+                  </Typography>
                 </TabList>
+                {/* Added IconButton with Menu for user options */}
+                <UserMenuButton
+                  userDetails={userDetails}
+                  handleLogout={handleLogout}
+                />
               </Box>
-
             </TabContext>
             <Box
               component="main"
@@ -142,7 +175,7 @@ export default function Dashboard() {
 
               </Button>
               {/* </Link> */}
-              <Link to='disputes'>
+              <Link to='/s_disputes'>
                 <Button
                   variant="contained"
                   sx={{
