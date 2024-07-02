@@ -66,7 +66,7 @@ export default function Dashboard() {
   //     // Redirect to login if no token found
   //     navigate('/');
   //   }
-  // }, [navigate]);
+  // }, [navigate]);kjvoijissa
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
   useEffect(() => {
