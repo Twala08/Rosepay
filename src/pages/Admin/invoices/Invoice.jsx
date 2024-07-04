@@ -16,12 +16,9 @@ import {
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useNavigate } from "react-router-dom";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import UserMenuButton from "../../../Components/UserMenuButton";
 import CustomButton from "../../../Components/CustomButton";
-// import SendIcon from "@mui/icons-material/Send";
-import SendIcon from '@mui/icons-material/TableView';
+import SendIcon from "@mui/icons-material/TableView";
 
 const defaultTheme = createTheme();
 
@@ -30,23 +27,23 @@ const MainContainer = styled(Box)(({ theme }) => ({
 }));
 
 const DrawerContainer = styled(Box)(({ theme }) => ({
-  width: 360, 
+  width: 360,
 }));
 
 const ContentContainer = styled(Box)(({ theme, open }) => ({
   display: "flex",
   flexGrow: 1,
-  marginTop: 30, 
+  marginTop: 30,
   transition: theme.transitions.create(["margin", "width"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
-  marginLeft: open ? 0 : -130, 
+  marginLeft: open ? 0 : -130,
   width: open ? `calc(100% - 240px)` : "100%",
 }));
 
 const TabsContainer = styled(Box)(({ theme }) => ({
-  width: "95%", 
+  width: "95%",
 }));
 
 const IndicatorContainer = styled(Box)(({ theme }) => ({
@@ -76,7 +73,7 @@ const CircleButton = styled(Button)(({ theme }) => ({
   fontWeight: "bold",
 
   "&:hover": {
-    backgroundColor: "#aaa", 
+    backgroundColor: "#aaa",
   },
 }));
 
@@ -84,7 +81,7 @@ const Dashboard = () => {
   const [open, setOpen] = useState(true);
   const [invoices, setInvoices] = useState([]);
   const [currentInvoiceIndex, setCurrentInvoiceIndex] = useState(0);
-  const [anchorEl, setAnchorEl] = useState(null); 
+  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -93,7 +90,6 @@ const Dashboard = () => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
 
   useEffect(() => {
     fetch(
@@ -122,13 +118,16 @@ const Dashboard = () => {
   const currentInvoice = invoices[currentInvoiceIndex];
 
   const navigateToCadmin = () => {
-    navigate("/admin"); 
+    navigate("/admin");
   };
 
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
   useEffect(() => {
-    if (!userDetails || (userDetails.role !== 'admin' && userDetails.role !== 'Admin')) {
+    if (
+      !userDetails ||
+      (userDetails.role !== "admin" && userDetails.role !== "Admin")
+    ) {
       navigate("/");
     }
   }, [userDetails, navigate]);
@@ -174,7 +173,6 @@ const Dashboard = () => {
                     LIST OF INVOICES
                   </Typography>
                 </TabList>
-                {/* Added IconButton with Menu for user options */}
                 <UserMenuButton
                   userDetails={userDetails}
                   handleLogout={handleLogout}
@@ -203,7 +201,7 @@ const Dashboard = () => {
                   onClick={handleClick}
                   text="Table View"
                   icon={SendIcon}
-                  sx={{ width: "60% !important",}}
+                  sx={{ width: "60% !important" }}
                 />
                 <Box
                   sx={{

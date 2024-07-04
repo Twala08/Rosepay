@@ -22,6 +22,33 @@ import { useNavigate } from "react-router-dom";
 import Rose from "../../Images/Rosey.svg";
 import "../../styles.css";
 
+// corausen lgin
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import P1 from "../../Images/charles-deloye-2RouMSg9Rnw-unsplash.jpg.jpg";
+import P2 from "../../Images/picture2.png";
+import P3 from "../../Images/honey-yanibel-minaya-cruz-laORtJZaieU-unsplash.jpg.jpg";
+import Paper from "@mui/material/Paper";
+// ---------------------------------------------------------
+
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://mui.com/">
+        RoseBank
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
 function SignIn() {
   const [role, setRole] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -84,29 +111,28 @@ function SignIn() {
             }
           } else {
             setErrorMessage("You are not authorized with the selected role.");
-            setBlinkError(true); 
+            setBlinkError(true);
             setTimeout(() => {
               setErrorMessage("");
-              setBlinkError(false); 
+              setBlinkError(false);
             }, 5000);
           }
         }
       } else {
-        
         setErrorMessage("Invalid user Id or Password");
-        setBlinkError(true); 
+        setBlinkError(true);
         setTimeout(() => {
           setErrorMessage("");
-          setBlinkError(false); 
+          setBlinkError(false);
         }, 5000);
       }
     } catch (error) {
       console.error("Error:", error);
       setErrorMessage("Something went wrong. Please try again later.");
-      setBlinkError(true); 
+      setBlinkError(true);
       setTimeout(() => {
         setErrorMessage("");
-        setBlinkError(false); 
+        setBlinkError(false);
       }, 5000);
     }
   };
@@ -196,8 +222,44 @@ function SignIn() {
 
   return (
     <ThemeProvider theme={Rosetheme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
+      <CssBaseline />
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1,
+        }}
+      >
+        <Carousel
+          showThumbs={false}
+          autoPlay
+          infiniteLoop
+          showStatus={false}
+          showArrows={false}
+          showIndicators={false}
+          interval={5000}
+        >
+          <div>
+            <img src={P3} alt="Slide 1" />
+          </div>
+          <div>
+            <img src={P1} alt="Slide 2" />
+          </div>
+          <div>
+            <img src={P2} alt="Slide 3" />
+          </div>
+        </Carousel>
+      </Box>
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{ position: "relative", zIndex: 1 }}
+      >
+        {/* <CssBaseline /> */}
+
         <Box
           sx={{
             marginTop: 8,
@@ -206,102 +268,109 @@ function SignIn() {
             alignItems: "center",
           }}
         >
-          <Box>
-            <img
-              src={Rose}
-              alt="Logo"
-              style={{ width: "150px", height: "150px" }}
-            />
-          </Box>
-          <FormControl>
-            <RadioGroup
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-              value={role}
-              onChange={handleRoleChange}
-            >
-              <FormControlLabel
-                value="finance"
-                control={<Radio />}
-                label="FINANCE"
-              />
-              <FormControlLabel
-                value="admin"
-                control={<Radio />}
-                label="ADMIN"
-              />
-              <FormControlLabel
-                value="lecturer"
-                control={<Radio />}
-                label="LECTURER"
-              />
-            </RadioGroup>
-          </FormControl>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
+          <Paper
+            elevation={3}
+            sx={{ padding: 3, width: "100%", textAlign: "center" }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="Employee_ID"
-              label="Employee ID"
-              name="Employee_ID"
-              autoComplete="Employee_ID"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            {errorMessage && (
-              <Typography
-                className={blinkError ? "blink blink-show" : "blink"}
-                sx={{
-                  textAlign: "center",
-                  fontWeight: "bold",
-                  color: "#D81730",
-                }}
-                paragraph
+            <Box>
+              <img
+                src={Rose}
+                alt="Logo"
+                style={{ width: "150px", height: "150px" }}
+              />
+            </Box>
+            <FormControl component="fieldset" sx={{ width: "100%" }}>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                value={role}
+                onChange={handleRoleChange}
+                sx={{ justifyContent: "center", marginBottom: 2 }}
               >
-                {errorMessage}
-              </Typography>
-            )}
-            <FormControlLabel
+                <FormControlLabel
+                  value="finance"
+                  control={<Radio />}
+                  label="FINANCE"
+                />
+                <FormControlLabel
+                  value="admin"
+                  control={<Radio />}
+                  label="ADMIN"
+                />
+                <FormControlLabel
+                  value="lecturer"
+                  control={<Radio />}
+                  label="LECTURER"
+                />
+              </RadioGroup>
+            </FormControl>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              noValidate
+              sx={{ mt: 1 }}
+            >
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="Employee_ID"
+                label="Employee ID"
+                name="Employee_ID"
+                autoComplete="Employee_ID"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              {errorMessage && (
+                <Typography
+                  className={blinkError ? "blink blink-show" : "blink"}
+                  sx={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    color: "#D81730",
+                  }}
+                  paragraph
+                >
+                  {errorMessage}
+                </Typography>
+              )}
+              {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link
-                  href="#"
-                  variant="body2"
-                  sx={{ justifyContent: "center" }}
-                >
-                  Forgot password?
-                </Link>
+            /> */}
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link
+                    href="#"
+                    variant="body2"
+                    sx={{ justifyContent: "center" }}
+                  >
+                    {/* Forgot password? */}
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
-          </Box>
+            </Box>
+          </Paper>
         </Box>
+        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

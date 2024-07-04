@@ -9,6 +9,7 @@ import SignIn from './pages/Signin/sign_in';
 import Home from './pages/Lecturer/Home/lecturer-home';
 import Disputes from './pages/Lecturer/Disputes/disputes';
 import Profile from './pages/Lecturer/Profile/profile';
+import ProfileUpdate from "./pages/Lecturer/Profile/ProfileUpdate"
 
 //ADMIN
 import Admin_home from "./pages/Admin/admin_home"
@@ -34,6 +35,7 @@ function App() {
         <Route path='lectureh' element={<Home />} />
         <Route path='disputes' element={<Disputes />} />
         <Route path='profile' element={<Profile />} />
+        <Route path='profile-update' element={<ProfileUpdate />} />
         <Route path='s_disputes' element={<S_Disputes />} />
 
         {/* ADMIN ROUTING */}

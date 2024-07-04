@@ -242,32 +242,33 @@ export default function Dashboard() {
       return;
     }
 
-    const url = 'https://fdvpj7kib0.execute-api.eu-west-1.amazonaws.com/production/user';
-    
+    const url =
+      "https://fdvpj7kib0.execute-api.eu-west-1.amazonaws.com/production/user";
+
     const data = {
-      user_id: formData.employeeId,  
+      user_id: formData.employeeId,
       email: formData.email,
       name: formData.name,
       surname: formData.surname,
-      password: formData.password, 
-      role: value, 
+      password: formData.password,
+      role: value,
     };
-    
+
     try {
       const response = await fetch(url, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-  
+
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
-  
+
       const responseData = await response.json();
-      console.log('Data posted successfully:', responseData);
+      console.log("Data posted successfully:", responseData);
       Swal.fire({
         title: "Success",
         text: "User successfully registered!",
@@ -278,8 +279,6 @@ export default function Dashboard() {
         buttonsStyling: true,
         confirmButtonColor: "#4CAF50",
       });
-  
-      // Reset the form data and radio button value
       setFormData({
         name: "",
         surname: "",
@@ -288,17 +287,18 @@ export default function Dashboard() {
         password: "",
       });
       setValue("");
-  
     } catch (error) {
-      console.error('Error posting data:', error);
+      console.error("Error posting data:", error);
     }
   };
-  
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
     if (id === "employeeId") {
-      setFormData({ ...formData, [id]: value === "" ? "" : parseInt(value, 10) });
+      setFormData({
+        ...formData,
+        [id]: value === "" ? "" : parseInt(value, 10),
+      });
     } else {
       setFormData({ ...formData, [id]: value });
     }
@@ -307,7 +307,10 @@ export default function Dashboard() {
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
   useEffect(() => {
-    if (!userDetails || (userDetails.role !== 'admin' && userDetails.role !== 'Admin')) {
+    if (
+      !userDetails ||
+      (userDetails.role !== "admin" && userDetails.role !== "Admin")
+    ) {
       navigate("/");
     }
   }, [userDetails, navigate]);
@@ -326,7 +329,7 @@ export default function Dashboard() {
         </DrawerContainer>
         <ContentContainer open={open}>
           <TabsContainer>
-          <TabContext value="1">
+            <TabContext value="1">
               <Box
                 sx={{
                   display: "flex",
@@ -349,7 +352,6 @@ export default function Dashboard() {
                     CREATE USERS
                   </Typography>
                 </TabList>
-                {/* Added IconButton with Menu for user options */}
                 <UserMenuButton
                   userDetails={userDetails}
                   handleLogout={handleLogout}

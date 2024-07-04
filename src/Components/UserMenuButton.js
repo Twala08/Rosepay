@@ -7,6 +7,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { useNavigate } from "react-router-dom";
+
 
 const CircleButton = styled(Button)(({ theme }) => ({
   width: 50,
@@ -34,12 +36,17 @@ const UserMenuButton = ({ userDetails, handleLogout }) => {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+  const navigate = useNavigate();
+
+  const handleProfileUpdate = () => {
+    navigate("/profile-update"); 
+  };
 
   return (
     <>
       <CircleButton onClick={handleMenuOpen}>
         {userDetails.name.charAt(0)}
-        {userDetails.name.charAt(0)}
+        {userDetails.surname.charAt(0)}
       </CircleButton>
       <Menu
         anchorEl={anchorEl}
@@ -47,9 +54,9 @@ const UserMenuButton = ({ userDetails, handleLogout }) => {
         onClose={handleMenuClose}
       >
         <MenuItem onClick={handleMenuClose}>
-          <Typography variant="inherit" display="flex" alignItems="center">
-            <PersonOutlineOutlinedIcon style={{ marginRight: "8px" }} />
-            {userDetails.name} 
+          <Typography variant="inherit" display="flex" alignItems="center" onClick={handleProfileUpdate}>
+            <PersonOutlineOutlinedIcon style={{ marginRight: "8px" }}  />
+            {userDetails.name}
           </Typography>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
@@ -60,7 +67,7 @@ const UserMenuButton = ({ userDetails, handleLogout }) => {
             onClick={handleLogout}
           >
             <IconButton>
-              <LogoutOutlinedIcon />
+              <LogoutOutlinedIcon  />
             </IconButton>
             Log Out
           </Typography>
